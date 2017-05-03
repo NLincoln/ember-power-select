@@ -106,7 +106,7 @@ export default Component.extend({
       choose: (...args) => this.send('choose', ...args),
       scrollTo: (...args) => scheduleOnce('afterRender', this, this.send, 'scrollTo', ...args)
     };
-    assert('{{power-select}} requires an `onchange` function', this.get('onchange') && typeof this.get('onchange') === 'function');
+    assert('{{power-select}} requires an `onChange` function', this.get('onChange') && typeof this.get('onChange') === 'function');
   },
 
   willDestroy() {
@@ -256,8 +256,9 @@ export default Component.extend({
 
     select(selected /* , e */) {
       let publicAPI = this.get('publicAPI');
+      let action = this.get('onChange') || this.get('onchange');
       if (!isEqual(publicAPI.selected, selected)) {
-        this.get('onchange')(selected, publicAPI);
+        action(selected, publicAPI);
       }
     },
 
