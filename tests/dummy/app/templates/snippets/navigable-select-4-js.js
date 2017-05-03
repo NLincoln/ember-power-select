@@ -1,13 +1,13 @@
 import Ember from 'ember';
 export default Ember.Controller.extend({
   actions: {
-    onchange(levelOrOption, dropdown) {
+    onChange(levelOrOption, dropdown) {
       if (get(levelOrOption, 'levelName')) {
         this.set('currentOptions', get(levelOrOption, 'options'));
       } else if (levelOrOption.parentLevel) {
         this.set('currentOptions', levelOrOption.parentLevel.options);
       } else {
-        this.get('onchange')(levelOrOption);
+        this.get('onChange')(levelOrOption);
         dropdown.actions.close();
         this.set('currentOptions', this.get('transformedOptions'));
       }

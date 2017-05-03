@@ -19,7 +19,7 @@ test('selected option can be customized using triggerComponent', function(assert
   this.country = countries[1]; // Spain
 
   this.render(hbs`
-    {{#power-select options=countries selected=country triggerComponent="selected-country" onchange=(action (mut foo)) as |country|}}
+    {{#power-select options=countries selected=country triggerComponent="selected-country" onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -37,7 +37,7 @@ test('selected item option can be customized using selectedItemComponent', funct
   this.country = countries[1]; // Spain
 
   this.render(hbs`
-    {{#power-select options=countries selected=country selectedItemComponent="selected-item-country" onchange=(action (mut foo)) as |country|}}
+    {{#power-select options=countries selected=country selectedItemComponent="selected-item-country" onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -54,7 +54,7 @@ test('the list of options can be customized using optionsComponent', function(as
   this.country = countries[1]; // Spain
 
   this.render(hbs`
-    {{#power-select options=countries selected=country optionsComponent="list-of-countries" onchange=(action (mut foo)) as |country|}}
+    {{#power-select options=countries selected=country optionsComponent="list-of-countries" onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -72,7 +72,7 @@ test('the `optionsComponent` receives the `extra` hash', function(assert) {
   this.country = countries[1]; // Spain
 
   this.render(hbs`
-    {{#power-select options=countries selected=country optionsComponent="list-of-countries" onchange=(action (mut foo)) extra=(hash field='code') as |country|}}
+    {{#power-select options=countries selected=country optionsComponent="list-of-countries" onChange=(action (mut foo)) extra=(hash field='code') as |country|}}
       {{country.code}}
     {{/power-select}}
   `);
@@ -90,7 +90,7 @@ test('the content before the list can be customized passing `beforeOptionsCompon
   this.country = countries[1]; // Spain
 
   this.render(hbs`
-    {{#power-select options=countries selected=country beforeOptionsComponent="custom-before-options" onchange=(action (mut foo)) as |country|}}
+    {{#power-select options=countries selected=country beforeOptionsComponent="custom-before-options" onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -107,7 +107,7 @@ test('the content after the list can be customized passing `afterOptionsComponen
   this.country = countries[1]; // Spain
 
   this.render(hbs`
-    {{#power-select options=countries selected=country afterOptionsComponent="custom-after-options" onchange=(action (mut foo)) as |country|}}
+    {{#power-select options=countries selected=country afterOptionsComponent="custom-after-options" onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -129,7 +129,7 @@ test('the `beforeOptionsComponent` and `afterOptionsComponent` receive the `extr
   this.render(hbs`
     {{#power-select options=countries
       selected=country
-      onchange=(action (mut selected))
+      onChange=(action (mut selected))
       afterOptionsComponent="custom-after-options2"
       beforeOptionsComponent="custom-before-options2"
       extra=(hash passedAction=(action someAction)) as |country|}}
@@ -162,7 +162,7 @@ test('the `triggerComponent` receives the `onFocus` action that triggers the `on
   this.render(hbs`
     {{#power-select options=countries
       selected=country
-      onchange=(action (mut selected))
+      onChange=(action (mut selected))
       triggerComponent="custom-trigger-that-handles-focus"
       onfocus=didFocusInside as |country|}}
       {{country.name}}
@@ -178,7 +178,7 @@ test('the search message can be customized passing `searchMessageComponent`', fu
   this.searchFn = function() {};
 
   this.render(hbs`
-    {{#power-select search=searchFn searchMessageComponent="custom-search-message" onchange=(action (mut foo)) as |country|}}
+    {{#power-select search=searchFn searchMessageComponent="custom-search-message" onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -197,7 +197,7 @@ test('placeholder can be customized using placeholderComponent', function(assert
       options=countries
       placeholder="test"
       placeholderComponent="custom-placeholder"
-      onchange=(action (mut foo)) as |country|}}
+      onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -220,7 +220,7 @@ test('groupComponent can be overridden', function(assert) {
   }));
 
   this.render(hbs`
-    {{#power-select options=groupedNumbers groupComponent='custom-group-component' onchange=(action (mut foo)) as |country|}}
+    {{#power-select options=groupedNumbers groupComponent='custom-group-component' onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -251,7 +251,7 @@ test('groupComponent has extension points', function(assert) {
   }));
 
   this.render(hbs`
-    {{#power-select options=groupedNumbers groupComponent='custom-group-component' extra=extra onchange=(action (mut foo)) as |country|}}
+    {{#power-select options=groupedNumbers groupComponent='custom-group-component' extra=extra onChange=(action (mut foo)) as |country|}}
       {{country.name}}
     {{/power-select}}
   `);

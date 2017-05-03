@@ -14,7 +14,7 @@ test('Pressing keydown highlights the next option', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -30,7 +30,7 @@ test('Pressing keyup highlights the previous option', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected="three" onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected="three" onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -47,7 +47,7 @@ test('When you the last option is highlighted, pressing keydown doesn\'t change 
   this.numbers = numbers;
   this.lastNumber = numbers[numbers.length - 1];
   this.render(hbs`
-    {{#power-select options=numbers selected=lastNumber onchange=(action (mut lastNumber)) as |option|}}
+    {{#power-select options=numbers selected=lastNumber onChange=(action (mut lastNumber)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -64,7 +64,7 @@ test('When you the first option is highlighted, pressing keyup doesn\'t change t
   this.numbers = numbers;
   this.firstNumber = numbers[0];
   this.render(hbs`
-    {{#power-select options=numbers selected=firstNumber onchange=(action (mut firstNumber)) as |option|}}
+    {{#power-select options=numbers selected=firstNumber onChange=(action (mut firstNumber)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -80,7 +80,7 @@ test('The arrow keys also scroll the list if the new highlighted element if it i
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected="seven" onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected="seven" onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -98,13 +98,13 @@ test('Pressing ENTER selects the highlighted element, closes the dropdown and fo
 
   this.numbers = numbers;
   this.changed = (val, dropdown) => {
-    assert.equal(val, 'two', 'The onchange action is triggered with the selected value');
+    assert.equal(val, 'two', 'The onChange action is triggered with the selected value');
     this.set('selected', val);
     assert.ok(dropdown.actions.close, 'The action receives the dropdown as second argument');
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action changed) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action changed) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -122,13 +122,13 @@ test('Pressing ENTER on a single select with search disabled selects the highlig
 
   this.numbers = numbers;
   this.changed = (val, dropdown) => {
-    assert.equal(val, 'two', 'The onchange action is triggered with the selected value');
+    assert.equal(val, 'two', 'The onChange action is triggered with the selected value');
     this.set('selected', val);
     assert.ok(dropdown.actions.close, 'The action receives the dropdown as second argument');
   };
 
   this.render(hbs`
-    {{#power-select searchEnabled=false options=numbers selected=selected onchange=(action changed) as |option|}}
+    {{#power-select searchEnabled=false options=numbers selected=selected onChange=(action changed) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -141,7 +141,7 @@ test('Pressing ENTER on a single select with search disabled selects the highlig
   assert.ok(find('.ember-power-select-trigger') === document.activeElement, 'The trigger is focused');
 });
 
-test('Pressing ENTER when there is no highlighted element, closes the dropdown and focuses the trigger without calling the onchange function', function(assert) {
+test('Pressing ENTER when there is no highlighted element, closes the dropdown and focuses the trigger without calling the onChange function', function(assert) {
   assert.expect(4);
   this.numbers = numbers;
   this.selected = 'two';
@@ -149,7 +149,7 @@ test('Pressing ENTER when there is no highlighted element, closes the dropdown a
     assert.ok(false, 'The handle change should not be called');
   };
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action handleChange) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action handleChange) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -168,13 +168,13 @@ test('Pressing SPACE on a select without a searchbox selects the highlighted ele
 
   this.numbers = numbers;
   this.changed = (val, dropdown) => {
-    assert.equal(val, 'two', 'The onchange action is triggered with the selected value');
+    assert.equal(val, 'two', 'The onChange action is triggered with the selected value');
     this.set('selected', val);
     assert.ok(dropdown.actions.close, 'The action receives the dropdown as second argument');
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action changed) searchEnabled=false as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action changed) searchEnabled=false as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -192,7 +192,7 @@ test('Pressing TAB closes the select WITHOUT selecting the highlighed element an
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -210,7 +210,7 @@ test('The component is focusable using the TAB key as any other kind of input', 
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -222,7 +222,7 @@ test('If the component is focused, pressing ENTER toggles it', function(assert) 
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) searchEnabled=false as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) searchEnabled=false as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -240,7 +240,7 @@ test('If the single component is focused and has no search, pressing SPACE toggl
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) searchEnabled=false as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) searchEnabled=false as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -258,7 +258,7 @@ test('If the single component is focused, pressing KEYDOWN opens it', function(a
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -274,7 +274,7 @@ test('If the single component is focused, pressing KEYUP opens it', function(ass
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -290,7 +290,7 @@ test('Pressing ESC while the component is opened closes it and focuses the trigg
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -318,7 +318,7 @@ test('In single-mode, when the user presses a key being the search input focused
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -345,7 +345,7 @@ test('In single-mode, when the user presses SPACE on the searchbox, the highligh
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -373,7 +373,7 @@ test('In multiple-mode, when the user presses SPACE on the searchbox, the highli
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -395,7 +395,7 @@ test('in single-mode if the users returns false in the `onkeydown` action it pre
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -422,7 +422,7 @@ test('In multiple-mode, when the user presses a key being the search input focus
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selectedNumbers onchange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -441,7 +441,7 @@ test('in multiple-mode if the users returns false in the `onkeydown` action it p
   this.handleKeydown = () => false;
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selectedNumbers onchange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -457,7 +457,7 @@ test('Typing on a closed single select selects the value that matches the string
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -484,7 +484,7 @@ test('Typing on a opened single select highlights the first value that matches t
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -507,7 +507,7 @@ test('Typing on a opened multiple select highlights the value that matches the s
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -531,7 +531,7 @@ test('The typed string gets reset after 1s idle', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -556,7 +556,7 @@ test('Type something that doesn\'t give you any result leaves the current select
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -578,7 +578,7 @@ test('Typing on a opened single select highlights the value that matches the str
 
   this.countries = countries;
   this.render(hbs`
-    {{#power-select options=countries selected=selected onchange=(action (mut selected)) searchField="name" as |country|}}
+    {{#power-select options=countries selected=selected onChange=(action (mut selected)) searchField="name" as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -598,7 +598,7 @@ test('Typing on a opened single select containing groups highlights the value th
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select options=groupedNumbers selected=selected onchange=(action (mut selected)) as |number|}}
+    {{#power-select options=groupedNumbers selected=selected onChange=(action (mut selected)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -618,7 +618,7 @@ test('Typing on a opened single select highlights skips disabled options', funct
 
   this.countries = countriesWithDisabled;
   this.render(hbs`
-    {{#power-select options=countries selected=selected onchange=(action (mut selected)) searchField="name" as |country|}}
+    {{#power-select options=countries selected=selected onChange=(action (mut selected)) searchField="name" as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -637,7 +637,7 @@ test('Typing on a opened single select highlights skips disabled groups', functi
 
   this.numbers = groupedNumbersWithDisabled;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |number|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -664,7 +664,7 @@ test('BUGFIX: If pressing up/down arrow on a single select open the dropdown, th
     }
   };
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) searchEnabled=false onopen=(action handleOpen) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) searchEnabled=false onopen=(action handleOpen) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -693,7 +693,7 @@ test('BUGFIX: If pressing up/down arrow on a single select DOES NOT the dropdown
     return false; // prevent the dropdown from opening
   };
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) searchEnabled=false onopen=(action handleOpen) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) searchEnabled=false onopen=(action handleOpen) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -721,7 +721,7 @@ test('BUGFIX: If pressing up/down arrow on a multiple select opens the select, t
     }
   };
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) searchEnabled=false onopen=(action handleOpen) as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) searchEnabled=false onopen=(action handleOpen) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -750,7 +750,7 @@ test('BUGFIX: If pressing up/down arrow on a multiple select DOES NOT open the s
     return false; // prevent the dropdown from opening
   };
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) searchEnabled=false onopen=(action handleOpen) as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) searchEnabled=false onopen=(action handleOpen) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);

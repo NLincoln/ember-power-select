@@ -14,7 +14,7 @@ test('trigger on single selects can be customized using triggerClass', function(
   this.country = countries[1]; // Spain
 
   this.render(hbs`
-    {{#power-select options=countries selected=country onchange=(action (mut foo)) triggerClass="country-single-trigger" as |country|}}
+    {{#power-select options=countries selected=country onChange=(action (mut foo)) triggerClass="country-single-trigger" as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -29,7 +29,7 @@ test('trigger on multiple selects can be customized using triggerClass', functio
   this.country = [countries[1], countries[0]];
 
   this.render(hbs`
-    {{#power-select options=countries selected=country onchange=(action (mut foo)) triggerClass="country-multiple-trigger" as |country|}}
+    {{#power-select options=countries selected=country onChange=(action (mut foo)) triggerClass="country-multiple-trigger" as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -44,7 +44,7 @@ test('Trigger can have a custom id passing triggerId', function(assert) {
   this.country = [countries[1], countries[0]];
 
   this.render(hbs`
-    {{#power-select options=countries selected=country onchange=(action (mut foo)) triggerId="this-is-my-id" as |country|}}
+    {{#power-select options=countries selected=country onChange=(action (mut foo)) triggerId="this-is-my-id" as |country|}}
       {{country.name}}
     {{/power-select}}
   `);
@@ -59,7 +59,7 @@ test('Trigger can have a custom id passing triggerId', function(assert) {
   this.country = [countries[1], countries[0]];
 
   this.render(hbs`
-    {{#power-select-multiple options=countries selected=country onchange=(action (mut foo)) triggerId="this-is-my-id" as |country|}}
+    {{#power-select-multiple options=countries selected=country onChange=(action (mut foo)) triggerId="this-is-my-id" as |country|}}
       {{country.name}}
     {{/power-select-multiple}}
   `);

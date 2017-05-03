@@ -4,7 +4,7 @@
   {{#power-select
     selected=number
     options=numbers
-    onchange=(action (mut number))
+    onChange=(action (mut number))
     onopen=(action "startSelfDestroyCountdown")
     placeholder="Once opened this component will destroy itself in 8 seconds"
     as |number|

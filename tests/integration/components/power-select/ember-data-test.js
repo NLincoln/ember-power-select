@@ -25,7 +25,7 @@ test('Passing as options of a `store.findAll` works', function(assert) {
   server.createList('user', 10);
   this.users = this.store.findAll('user');
   this.render(hbs`
-    {{#power-select options=users searchField="name" onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=users searchField="name" onChange=(action (mut foo)) as |option|}}
       {{option.name}}
     {{/power-select}}
   `);
@@ -44,7 +44,7 @@ test('Passing as options the result of `store.query` works', function(assert) {
   server.createList('user', 10);
   this.users = this.store.query('user', { foo: 'bar' });
   this.render(hbs`
-    {{#power-select options=users searchField="name" onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=users searchField="name" onChange=(action (mut foo)) as |option|}}
       {{option.name}}
     {{/power-select}}
   `);
@@ -63,7 +63,7 @@ test('Delete an item in a multiple selection', function(assert) {
   server.createList('user', 10);
   this.users = this.store.findAll('user');
   this.render(hbs`
-    {{#power-select-multiple options=users searchField="name" selected=users onchange=(action (mut users)) as |option|}}
+    {{#power-select-multiple options=users searchField="name" selected=users onChange=(action (mut users)) as |option|}}
       {{option.name}}
     {{/power-select-multiple}}
   `);
@@ -88,7 +88,7 @@ test('The `selected` option can be an async belongsTo', function(assert) {
     this.store.findRecord('user', mainUser.id).then((record) => {
       this.mainUser = record;
       this.render(hbs`
-        {{#power-select options=mainUser.pets selected=mainUser.bestie searchField="name" onchange=(action (mut foo)) as |option|}}
+        {{#power-select options=mainUser.pets selected=mainUser.bestie searchField="name" onChange=(action (mut foo)) as |option|}}
           {{option.name}}
         {{/power-select}}
       `);

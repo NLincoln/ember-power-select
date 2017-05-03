@@ -13,7 +13,7 @@ test('Touch on trigger should open the dropdown', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -27,7 +27,7 @@ test('Touch on option should select it', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -44,7 +44,7 @@ test('Touch on custom option should select it', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       <div class="super-fancy">{{option}}</div>
     {{/power-select}}
   `);
@@ -61,7 +61,7 @@ test('Touch on clear button should deselect it', function(assert) {
   this.numbers = numbers;
   this.foo = 'one';
   this.render(hbs`
-    {{#power-select options=numbers selected=foo allowClear=true onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo allowClear=true onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);

@@ -45,7 +45,7 @@ test('The search action of single selects action receives the search term and th
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) search=handleSearch as |number|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) search=handleSearch as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -64,7 +64,7 @@ test('The search action of multiple selects action receives the search term and 
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) search=handleSearch as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) search=handleSearch as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -73,7 +73,7 @@ test('The search action of multiple selects action receives the search term and 
   typeInSearch('el');
 });
 
-test('The onchange of single selects action receives the selection and the public API', function(assert) {
+test('The onChange of single selects action receives the selection and the public API', function(assert) {
   assert.expect(22);
 
   this.numbers = numbers;
@@ -83,7 +83,7 @@ test('The onchange of single selects action receives the selection and the publi
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=handleChange as |number|}}
+    {{#power-select options=numbers selected=foo onChange=handleChange as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -92,7 +92,7 @@ test('The onchange of single selects action receives the selection and the publi
   click('.ember-power-select-option');
 });
 
-test('The onchange of multiple selects action receives the selection and the public API', function(assert) {
+test('The onChange of multiple selects action receives the selection and the public API', function(assert) {
   assert.expect(22);
 
   this.numbers = numbers;
@@ -102,7 +102,7 @@ test('The onchange of multiple selects action receives the selection and the pub
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=handleChange as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=handleChange as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -121,7 +121,7 @@ test('The onkeydown of single selects action receives the public API and the key
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onkeydown=onKeyDown onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo onkeydown=onKeyDown onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -144,7 +144,7 @@ test('The onkeydown can be used to easily allow to select on tab', function(asse
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onkeydown=onKeyDown onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo onkeydown=onKeyDown onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -168,7 +168,7 @@ test('The onkeydown of multiple selects action receives the public API and the k
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onkeydown=onKeyDown onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onkeydown=onKeyDown onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -191,7 +191,7 @@ test('returning false from the `onkeydown` action prevents the default behaviour
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) onkeydown=handleKeyDown as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) onkeydown=handleKeyDown as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -214,7 +214,7 @@ test('returning false from the `onkeydown` action prevents the default behaviour
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) onkeydown=handleKeyDown as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) onkeydown=handleKeyDown as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -233,7 +233,7 @@ test('The onfocus of single selects action receives the public API and the focus
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onfocus=handleFocus onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo onfocus=handleFocus onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -251,7 +251,7 @@ test('The onfocus of multiple selects action receives the public API and the foc
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onfocus=handleFocus onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onfocus=handleFocus onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -269,7 +269,7 @@ test('The onfocus of multiple selects also gets called when the thing getting th
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onfocus=handleFocus onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onfocus=handleFocus onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -287,7 +287,7 @@ test('The onblur of single selects action receives the public API and the event'
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onblur=handleBlur onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo onblur=handleBlur onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
     <input type="text" id="other-element"/>
@@ -307,7 +307,7 @@ test('The onblur of multiple selects action receives the public API and the focu
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onblur=handleBlur onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onblur=handleBlur onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
     <input type="text" id="other-element"/>
@@ -325,7 +325,7 @@ test('The onblur of multiple selects also gets called when the thing getting the
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onblur=handleBlur onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo onblur=handleBlur onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
     <input type="text" id="other-element"/>
@@ -346,7 +346,7 @@ test('the `onopen` action is invoked just before the dropdown opens', function(a
   };
 
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) onopen=handleOpen as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) onopen=handleOpen as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -367,7 +367,7 @@ test('returning false from the `onopen` action prevents the single select from o
   };
 
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) onopen=handleOpen as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) onopen=handleOpen as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -388,7 +388,7 @@ test('returning false from the `onopen` action prevents the multiple select from
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) onopen=handleOpen as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) onopen=handleOpen as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -408,7 +408,7 @@ test('the `onclose` action is invoked just before the dropdown closes', function
   };
 
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) onclose=handleClose as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) onclose=handleClose as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -430,7 +430,7 @@ test('returning false from the `onclose` action prevents the single select from 
   };
 
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) onclose=handleClose as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) onclose=handleClose as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -453,7 +453,7 @@ test('returning false from the `onclose` action prevents the multiple select fro
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) onclose=handleClose as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) onclose=handleClose as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -476,7 +476,7 @@ test('the `oninput` action is invoked when the user modifies the text of the sea
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo oninput=handleInput onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo oninput=handleInput onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -502,7 +502,7 @@ test('the `oninput` action is invoked when the user modifies the text of the sea
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo oninput=handleInput onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple options=numbers selected=foo oninput=handleInput onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -525,7 +525,7 @@ test('if the `oninput` action of single selects returns false the search is canc
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo oninput=handleInput onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo oninput=handleInput onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -544,7 +544,7 @@ test('if `oninput` action of multiple selects returns false the search is cancel
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo oninput=handleInput onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple options=numbers selected=foo oninput=handleInput onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -561,7 +561,7 @@ test('the `highlight` action of the public api passed to the public actions work
     select.actions.highlight('baz');
   };
   this.render(hbs`
-    {{#power-select options=options onchange=(action (mut foo)) onopen=handleOpen as |option|}}
+    {{#power-select options=options onChange=(action (mut foo)) onopen=handleOpen as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -580,7 +580,7 @@ test('The programmer can use the received public API to perform searches in sing
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onopen=initSearch onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo onopen=initSearch onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -599,7 +599,7 @@ test('The programmer can use the received public API to perform searches in muti
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onopen=initSearch onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onopen=initSearch onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -618,7 +618,7 @@ test('The search action of multiple selects has the searchText set to the up-to-
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) search=handleSearch as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) search=handleSearch as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -635,7 +635,7 @@ test('The single component invokes the `registerAPI` action with the public API 
     }
   };
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) registerAPI=storeAPI as |number|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) registerAPI=storeAPI as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -649,7 +649,7 @@ test('The multiple component invokes the `registerAPI` action with the public AP
     }
   };
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) registerAPI=storeAPI as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) registerAPI=storeAPI as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);

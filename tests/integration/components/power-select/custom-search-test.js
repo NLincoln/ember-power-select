@@ -19,7 +19,7 @@ test('When you pass a custom search action instead of options, opening the selec
   this.searchFn = function() {};
 
   this.render(hbs`
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -39,7 +39,7 @@ test('The search text shouldn\'t appear if options are loading', function(assert
   this.searchFn = function() {};
 
   this.render(hbs`
-    {{#power-select options=options search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=options search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -54,7 +54,7 @@ test('When no options are given but there is a search action, a "type to search"
 
   this.searchFn = function() {};
   this.render(hbs`
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -69,7 +69,7 @@ test('The "type to search" message can be customized passing `searchMessage=some
 
   this.searchFn = function() {};
   this.render(hbs`
-    {{#power-select search=searchFn searchMessage="Type the name of the thing" onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn searchMessage="Type the name of the thing" onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -86,7 +86,7 @@ test('The search function can return an array and those options get rendered', f
   };
 
   this.render(hbs`
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -108,7 +108,7 @@ test('The search function can return a promise that resolves to an array and tho
   };
 
   this.render(hbs`
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -133,7 +133,7 @@ test('While the async search is being performed the "Type to search" dissapears 
   };
 
   this.render(hbs`
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -158,7 +158,7 @@ test('When the search resolves to an empty array then the "No results found" mes
   };
 
   this.render(hbs`
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -182,7 +182,7 @@ test('When the search resolves to an empty array then the custom "No results" me
   };
 
   this.render(hbs`
-    {{#power-select search=searchFn noMatchesMessage="Meec. Try again" onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn noMatchesMessage="Meec. Try again" onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -206,7 +206,7 @@ test('When the search resolves to an empty array then the custom alternate block
   };
 
   this.render(hbs`
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{else}}
       <span class="foo-bar">Baz</span>
@@ -234,7 +234,7 @@ test('When the search resolves to an empty array then the custom alternate block
 //   };
 
 //   this.render(hbs`
-//     {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+//     {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
 //       {{number}}
 //     {{/power-select}}
 //   `);
@@ -265,7 +265,7 @@ test('On an empty select, when the search resolves, the first element is highlig
   };
 
   this.render(hbs`
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -292,7 +292,7 @@ test('On an select with a selected value, if after a search this value is not am
   };
 
   this.render(hbs`
-    {{#power-select search=searchFn options=numbers selected=selected onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn options=numbers selected=selected onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -314,7 +314,7 @@ test('Closing a component with a custom search cleans the search box and the res
 
   this.render(hbs`
     <div id="different-node"></div>
-    {{#power-select search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -345,7 +345,7 @@ test('When received both options and search, those options are shown when the dr
 
   this.render(hbs`
     <div id="different-node"></div>
-    {{#power-select options=numbers search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -372,7 +372,7 @@ test('Don\'t return from the search action and update the options instead also w
 
   this.render(hbs`
     <div id="different-node"></div>
-    {{#power-select options=selectedOptions search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=selectedOptions search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -404,7 +404,7 @@ test('Setting the options to a promise from the custom search function works (an
 
   this.render(hbs`
     <div id="different-node"></div>
-    {{#power-select options=selectedOptions search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=selectedOptions search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -452,7 +452,7 @@ test('If you delete the last char of the input before the previous promise resol
   };
 
   this.render(hbs`
-    {{#power-select options=numbers search=searchFn onchange=(action (mut foo)) as |number select|}}
+    {{#power-select options=numbers search=searchFn onChange=(action (mut foo)) as |number select|}}
       {{number}}:{{select.lastSearchedText}}
     {{/power-select}}
   `);
@@ -485,7 +485,7 @@ test('The lastSearchedText of the yielded publicAPI in single selects is updated
   };
 
   this.render(hbs`
-    {{#power-select options=numbers search=searchFn onchange=(action (mut foo)) as |number select|}}
+    {{#power-select options=numbers search=searchFn onChange=(action (mut foo)) as |number select|}}
       {{number}}:{{select.lastSearchedText}}
     {{/power-select}}
   `);
@@ -514,7 +514,7 @@ test('The lastSearchedText of the yielded publicAPI in multiple selects is updat
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers search=searchFn onchange=(action (mut foo)) as |number select|}}
+    {{#power-select-multiple options=numbers search=searchFn onChange=(action (mut foo)) as |number select|}}
       {{number}}:{{select.lastSearchedText}}
     {{/power-select-multiple}}
   `);
@@ -546,7 +546,7 @@ test('BUGFIX: Destroy a component why an async search is pending does not cause 
 
   this.render(hbs`
     {{#if visible}}
-      {{#power-select-multiple options=numbers search=searchFn onchange=(action (mut foo)) as |number searchTerm|}}
+      {{#power-select-multiple options=numbers search=searchFn onChange=(action (mut foo)) as |number searchTerm|}}
         {{number}}:{{searchTerm}}
       {{/power-select-multiple}}
     {{/if}}
@@ -569,7 +569,7 @@ test('BUGFIX: When the given options are a promise and a search function is prov
   };
 
   this.render(hbs`
-   {{#power-select options=numbersPromise search=searchFn selected=foo onchange=(action (mut foo)) as |number|}}
+   {{#power-select options=numbersPromise search=searchFn selected=foo onChange=(action (mut foo)) as |number|}}
      {{number}}
    {{/power-select}}
   `);
@@ -589,7 +589,7 @@ test('BUGFIX: If the user provides a custom matcher, that matcher receives the e
     assert.equal(typeof option, 'object', 'The first argument received by the custom matches is the option itself');
   };
   this.render(hbs`
-    {{#power-select-multiple options=countries matcher=matcherFn searchField="name" onchange=(action (mut foo)) as |number searchTerm|}}
+    {{#power-select-multiple options=countries matcher=matcherFn searchField="name" onChange=(action (mut foo)) as |number searchTerm|}}
       {{country.name}}
     {{/power-select-multiple}}
   `);
@@ -610,7 +610,7 @@ test('If the value returned from an async search is cancellable and before it co
   }).create();
 
   this.render(hbs`
-    {{#power-select search=(perform obj.searchTask) onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=(perform obj.searchTask) onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -640,7 +640,7 @@ test('If the value returned from an async search is cancellable and before it co
   }).create();
 
   this.render(hbs`
-    {{#power-select search=(perform obj.searchTask) onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=(perform obj.searchTask) onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -671,7 +671,7 @@ test('If a select is destroyed while a search is still ongoing and the search is
 
   this.render(hbs`
     {{#unless hideSelect}}
-      {{#power-select search=(perform obj.searchTask) onchange=(action (mut foo)) as |number|}}
+      {{#power-select search=(perform obj.searchTask) onChange=(action (mut foo)) as |number|}}
         {{number}}
       {{/power-select}}
     {{/unless}}
@@ -702,7 +702,7 @@ test('If a select is closed while a search is still ongoing and the search is ca
   }).create();
 
   this.render(hbs`
-    {{#power-select search=(perform obj.searchTask) onchange=(action (mut foo)) as |number|}}
+    {{#power-select search=(perform obj.searchTask) onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -732,7 +732,7 @@ test('If the value returned from an async search of a multiple-select is cancell
   }).create();
 
   this.render(hbs`
-    {{#power-select-multiple search=(perform obj.searchTask) onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple search=(perform obj.searchTask) onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -762,7 +762,7 @@ test('If the value returned from an async search of a multiple-select is cancell
   }).create();
 
   this.render(hbs`
-    {{#power-select-multiple search=(perform obj.searchTask) onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple search=(perform obj.searchTask) onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -793,7 +793,7 @@ test('If a multiple select is destroyed while a search is still ongoing and the 
 
   this.render(hbs`
     {{#unless hideSelect}}
-      {{#power-select-multiple search=(perform obj.searchTask) onchange=(action (mut foo)) as |number|}}
+      {{#power-select-multiple search=(perform obj.searchTask) onChange=(action (mut foo)) as |number|}}
         {{number}}
       {{/power-select-multiple}}
     {{/unless}}
@@ -824,7 +824,7 @@ test('If a multiple select is closed while a search is still ongoing and the sea
   }).create();
 
   this.render(hbs`
-    {{#power-select-multiple search=(perform obj.searchTask) onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple search=(perform obj.searchTask) onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);

@@ -196,7 +196,7 @@ test('removeMultipleOption removes selected option', async function(assert) {
   assert.equal(findAll('.select-choose-onopen-multiple .ember-power-select-trigger > .ember-power-select-multiple-options > li').length, 0, 'Last option removed');
 });
 
-test('removeMultipleOption works with async onchange action', async function(assert) {
+test('removeMultipleOption works with async onChange action', async function(assert) {
   await visit('/helpers-testing');
 
   await selectChoose('#select-multiple-async', 'three');
@@ -221,7 +221,7 @@ test('clearSelected removes selected option', async function(assert) {
   assert.notOk(find('.select-choose-onopen .ember-power-select-clear-btn'));
 });
 
-test('clearSelected works with async onchange action', async function(assert) {
+test('clearSelected works with async onChange action', async function(assert) {
   await visit('/helpers-testing');
 
   assert.notOk(find('.select-deselect-async .ember-power-select-clear-btn'));

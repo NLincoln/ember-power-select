@@ -6,7 +6,7 @@ moduleForComponent('ember-power-select', 'Integration | Component | Ember Power 
   integration: true
 });
 
-// test('the `onchange` function is mandatory', function(assert) {
+// test('the `onChange` function is mandatory', function(assert) {
 //   assert.expect(1);
 
 //   this.numbers = numbers;
@@ -15,5 +15,5 @@ moduleForComponent('ember-power-select', 'Integration | Component | Ember Power 
 //     this.render(hbs`
 //       {{#power-select options=countries selected=selected as |opt|}}{{opt}}{{/power-select}}
 //     `);
-//   }, /requires an `onchange` function/);
+//   }, /requires an `onChange` function/);
 // });

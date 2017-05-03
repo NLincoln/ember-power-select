@@ -13,7 +13,7 @@ test('Mouseovering a list item highlights it', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -34,7 +34,7 @@ test('Clicking an item selects it, closes the dropdown and focuses the trigger',
     assert.ok(dropdown.actions.close, 'The action is invoked with the the dropdown object as second parameter');
   };
   this.render(hbs`
-    {{#power-select options=numbers onchange=foo as |option|}}
+    {{#power-select options=numbers onChange=foo as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -50,7 +50,7 @@ test('Clicking the trigger while the select is opened closes it and and focuses 
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -67,13 +67,13 @@ test('Doing mousedown the clear button removes the selection but does not open t
 
   this.numbers = numbers;
   this.onChange = (selected, dropdown) => {
-    assert.equal(selected, null, 'The onchange action was called with the new selection (null)');
-    assert.ok(dropdown.actions.close, 'The onchange action was called with the dropdown object as second argument');
+    assert.equal(selected, null, 'The onChange action was called with the new selection (null)');
+    assert.ok(dropdown.actions.close, 'The onChange action was called with the dropdown object as second argument');
     this.set('selected', selected);
   };
   this.selected = 'three';
   this.render(hbs`
-    {{#power-select options=numbers selected=selected allowClear=true onchange=onChange as |option|}}
+    {{#power-select options=numbers selected=selected allowClear=true onChange=onChange as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -91,7 +91,7 @@ test('Clicking anywhere outside the select while opened closes the component and
   this.numbers = numbers;
   this.render(hbs`
     <input type="text" id="other-thing">
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -108,7 +108,7 @@ test('Doing mouseup over an option less than 2px in the Y axis of where the mous
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -132,7 +132,7 @@ test('Clicking on a wrapped option should select it', function(assert) {
   };
 
   this.render(hbs`
-    {{#power-select options=numbers onchange=foo as |option|}}
+    {{#power-select options=numbers onChange=foo as |option|}}
       <span class="special-class">{{option}}</span>
     {{/power-select}}
   `);
@@ -149,7 +149,7 @@ test('Mouse-overing on a wrapped option should select it', function(assert) {
   this.numbers = numbers;
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       <span class="special-class">{{option}}</span>
     {{/power-select}}
   `);
@@ -166,7 +166,7 @@ test('Mouse-overing the list itself doesn\'t crashes the app', function(assert) 
   this.numbers = numbers;
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       <span class="special-class">{{option}}</span>
     {{/power-select}}
   `);

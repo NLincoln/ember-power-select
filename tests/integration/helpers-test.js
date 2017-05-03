@@ -11,7 +11,7 @@ test('typeInSearch inputs the provided search string', function(assert) {
   this.numbers = numbers;
 
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -26,11 +26,11 @@ test('typeInSearch scopes the input to the provided one if the passed arguments 
   this.numbers = numbers;
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut fooMultiple)) as |number|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut fooMultiple)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
     <div id="single-select">
-      {{#power-select options=numbers renderInPlace=true onchange=(action (mut foo)) as |number|}}
+      {{#power-select options=numbers renderInPlace=true onChange=(action (mut foo)) as |number|}}
         {{number}}
       {{/power-select}}
     </div>

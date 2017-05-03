@@ -21,7 +21,7 @@ test('Click in the trigger of a closed select opens the dropdown', function(asse
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -37,7 +37,7 @@ test('Click in the trigger of an opened select closes the dropdown', function(as
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -54,7 +54,7 @@ test('Search functionality is enabled by default', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers  onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers  onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -68,7 +68,7 @@ test('The search functionality can be disabled by passing `searchEnabled=false`'
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers searchEnabled=false onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers searchEnabled=false onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -86,7 +86,7 @@ test("The search box shouldn't gain focus if autofocus is disabled", function(as
   this.render(hbs`
     {{#power-select
     options=numbers
-    onchange=(action (mut foo))
+    onChange=(action (mut foo))
     beforeOptionsComponent=(component "power-select/before-options" autofocus=false)
     as |option|
     }}
@@ -103,7 +103,7 @@ test('Each option of the select is the result of yielding an item', function(ass
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -127,7 +127,7 @@ test('If the passed options is a promise and it\'s not resolved the component sh
   });
 
   this.render(hbs`
-    {{#power-select options=numbersPromise onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbersPromise onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -153,7 +153,7 @@ test('If the passed options is a promise and it\'s not resolved but the `loading
   });
 
   this.render(hbs`
-    {{#power-select options=numbersPromise onchange=(action (mut foo)) loadingMessage=false as |option|}}
+    {{#power-select options=numbersPromise onChange=(action (mut foo)) loadingMessage=false as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -172,7 +172,7 @@ test('If a placeholder is provided, it shows while no element is selected', func
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo placeholder="abracadabra" onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo placeholder="abracadabra" onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -189,7 +189,7 @@ test('If a `searchPlaceholder` is provided, it shows on the searchbox of single 
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo searchPlaceholder="foobar yo!" onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo searchPlaceholder="foobar yo!" onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -198,17 +198,17 @@ test('If a `searchPlaceholder` is provided, it shows on the searchbox of single 
   assert.equal(find('.ember-power-select-search-input').attributes.placeholder.value, 'foobar yo!', 'The searchbox has the proper placeholder');
 });
 
-test('If the `selected` value changes the select gets updated, but the `onchange` action doesn\'t fire', function(assert) {
+test('If the `selected` value changes the select gets updated, but the `onChange` action doesn\'t fire', function(assert) {
   assert.expect(3);
 
   this.numbers = numbers;
   this.selected = null;
   this.foo = function() {
-    assert.ok(false, 'The onchange action is never fired');
+    assert.ok(false, 'The onChange action is never fired');
   };
 
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action foo) selected=selected as |option|}}
+    {{#power-select options=numbers onChange=(action foo) selected=selected as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -226,7 +226,7 @@ test('If the user selects a value and later on the selected value changes from t
   this.numbers = numbers;
   this.selected = null;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -244,7 +244,7 @@ test('If the user passes `renderInPlace=true` the dropdown is added below the tr
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers renderInPlace=true onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers renderInPlace=true onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -258,7 +258,7 @@ test('If the user passes `closeOnSelect=false` the dropdown remains visible afte
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo closeOnSelect=false onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo closeOnSelect=false onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -276,7 +276,7 @@ test('If the user passes `closeOnSelect=false` the dropdown remains visible afte
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo closeOnSelect=false onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo closeOnSelect=false onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -304,7 +304,7 @@ test('If the content of the options is refreshed (starting with empty array prox
     });
   };
 
-  this.render(hbs`{{#power-select options=proxy search=(action search) onchange=(action (mut foo)) as |option|}} {{option}} {{/power-select}}`);
+  this.render(hbs`{{#power-select options=proxy search=(action search) onChange=(action (mut foo)) as |option|}} {{option}} {{/power-select}}`);
 
   clickTrigger();
   typeInSearch('o');
@@ -331,7 +331,7 @@ test('If the content of the options is updated (starting with populated array pr
     });
   };
 
-  this.render(hbs`{{#power-select options=proxy search=(action search) onchange=(action (mut foo)) as |option|}} {{option}} {{/power-select}}`);
+  this.render(hbs`{{#power-select options=proxy search=(action search) onChange=(action (mut foo)) as |option|}} {{option}} {{/power-select}}`);
 
   clickTrigger();
 
@@ -353,7 +353,7 @@ test('If the content of the selected is refreshed while opened the first element
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo closeOnSelect=false onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo closeOnSelect=false onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -369,7 +369,7 @@ test('If the user passes `dropdownClass` the dropdown content should have that c
 
   this.options = [];
   this.render(hbs`
-    {{#power-select options=options selected=foo onchange=(action (mut foo)) dropdownClass="this-is-a-test-class" as |option|}}
+    {{#power-select options=options selected=foo onChange=(action (mut foo)) dropdownClass="this-is-a-test-class" as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -382,7 +382,7 @@ test('The filtering is reverted after closing the select', function(assert) {
   this.numbers = numbers;
   this.render(hbs`
     <div id="outside-div"></div>
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -399,7 +399,7 @@ test('The publicAPI is yielded as second argument in single selects', function(a
   assert.expect(2);
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) as |option select|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) as |option select|}}
       {{select.lastSearchedText}}:{{option}}
     {{/power-select}}
   `);
@@ -416,7 +416,7 @@ test('The publicAPI is yielded as second argument in single selects', function(a
 test('If there is no search action and the options is empty the select shows the default "no options" message', function(assert) {
   this.options = [];
   this.render(hbs`
-    {{#power-select options=options onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=options onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -430,7 +430,7 @@ test('If there is a search action and the options is empty it shows the `searchM
   this.options = [];
   this.search = () => [];
   this.render(hbs`
-    {{#power-select search=search options=options onchange=(action (mut foo)) as |option|}}
+    {{#power-select search=search options=options onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -445,7 +445,7 @@ test('If there is a search action and the options is empty it shows the `searchM
 test('The default "no options" message can be customized passing `noMatchesMessage="other message"`', function(assert) {
   this.options = [];
   this.render(hbs`
-    {{#power-select options=options noMatchesMessage="Nope" onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=options noMatchesMessage="Nope" onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -458,7 +458,7 @@ test('If there is a search action, the options are empty and the `seachMessage` 
   this.options = [];
   this.search = () => [];
   this.render(hbs`
-    {{#power-select search=search searchMessage=false options=options onchange=(action (mut foo)) as |option|}}
+    {{#power-select search=search searchMessage=false options=options onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -472,7 +472,7 @@ test('If there is a search action, the options are empty and the `seachMessage` 
 test('The content of the dropdown when there are no options can be completely customized using the inverse block', function(assert) {
   this.options = [];
   this.render(hbs`
-    {{#power-select options=options noMatchesMessage="Nope" onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=options noMatchesMessage="Nope" onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{else}}
       <span class="empty-option-foo">Foo bar</span>
@@ -488,7 +488,7 @@ test('When no `selected` is provided, the first item in the dropdown is highligh
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -504,7 +504,7 @@ test('When `selected` option is provided, it appears in the trigger yielded with
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select selected="three" options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select selected="three" options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -512,7 +512,7 @@ test('When `selected` option is provided, it appears in the trigger yielded with
   assert.equal(find('.ember-power-select-trigger').textContent.trim(), 'three', 'The selected option show in the trigger');
 
   this.render(hbs`
-    {{#power-select selected="three" options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select selected="three" options=numbers onChange=(action (mut foo)) as |option|}}
       Selected: {{option}}
     {{/power-select}}
   `);
@@ -524,7 +524,7 @@ test('When `selected` option is provided, it is highlighted when the dropdown op
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select selected="three" options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select selected="three" options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -540,7 +540,7 @@ test('When `selected` option is provided, that option is marked as `.selected`',
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select selected="three" options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select selected="three" options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -555,7 +555,7 @@ test('The default search strategy matches disregarding diacritics differences an
 
   this.names = names;
   this.render(hbs`
-    {{#power-select options=names onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=names onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -586,7 +586,7 @@ test('You can pass a custom marcher with `matcher=myFn` to customize the search 
   };
 
   this.render(hbs`
-    {{#power-select options=numbers matcher=endsWithMatcher onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers matcher=endsWithMatcher onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -603,7 +603,7 @@ test('When no `selected` is provided, the first item in the dropdown is highligh
 
   this.countries = countries;
   this.render(hbs`
-    {{#power-select options=countries onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=countries onChange=(action (mut foo)) as |option|}}
       {{option.code}}: {{option.name}}
     {{/power-select}}
   `);
@@ -620,7 +620,7 @@ test('When a option is provided that options is rendered in the trigger using th
   this.countries = countries;
   this.country = countries[1]; // Spain
   this.render(hbs`
-    {{#power-select options=countries selected=country onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=countries selected=country onChange=(action (mut foo)) as |option|}}
       {{option.code}}: {{option.name}}
     {{/power-select}}
   `);
@@ -634,7 +634,7 @@ test('When `selected` option is provided, it is highlighted when the dropdown op
   this.countries = countries;
   this.country = countries[1]; // Spain
   this.render(hbs`
-    {{#power-select options=countries selected=country onchange=(action (mut country)) as |option|}}
+    {{#power-select options=countries selected=country onChange=(action (mut country)) as |option|}}
       {{option.code}}: {{option.name}}
     {{/power-select}}
   `);
@@ -651,7 +651,7 @@ test('When `selected` option (object) is provided, that option is marked as `.se
   this.countries = countries;
   this.country = countries[1]; // Spain
   this.render(hbs`
-    {{#power-select options=countries selected=country onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=countries selected=country onChange=(action (mut foo)) as |option|}}
       {{option.code}}: {{option.name}}
     {{/power-select}}
   `);
@@ -674,7 +674,7 @@ test('The default search strategy matches disregarding diacritics differences an
   ];
 
   this.render(hbs`
-    {{#power-select options=people searchField="name" onchange=(action (mut foo)) as |person|}}
+    {{#power-select options=people searchField="name" onChange=(action (mut foo)) as |person|}}
       {{person.name}} {{person.surname}}
     {{/power-select}}
   `);
@@ -713,7 +713,7 @@ test('You can pass a custom marcher with `matcher=myFn` to customize the search 
   };
 
   this.render(hbs`
-    {{#power-select options=people matcher=nameOrSurnameNoDiacriticsCaseSensitive onchange=(action (mut foo)) as |person|}}
+    {{#power-select options=people matcher=nameOrSurnameNoDiacriticsCaseSensitive onChange=(action (mut foo)) as |person|}}
       {{person.name}} {{person.surname}}
     {{/power-select}}
   `);
@@ -733,7 +733,7 @@ test('BUGFIX: The highlighted element is reset when single selects are closed', 
   this.numbers = numbers;
   this.foo = 'three';
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -752,7 +752,7 @@ test('BUGFIX: The highlighted element is reset when multiple selects are closed'
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -777,7 +777,7 @@ test('If the passed options is a promise that is resolved, searching should filt
   });
 
   this.render(hbs`
-    {{#power-select options=numbersPromise onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbersPromise onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -802,7 +802,7 @@ test('Disabled single selects don\'t have a clear button even if `allowClear` is
   this.numbers = numbers;
   this.foo = numbers[2];
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onchange=(action (mut foo)) allowClear=true disabled=true as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) allowClear=true disabled=true as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -819,7 +819,7 @@ test('If the passed selected element is a pending promise, the first element is 
   });
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -837,7 +837,7 @@ test('If the passed selected element is a resolved promise, that element is sele
   this.selected = RSVP.resolve(numbers[3]);
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -858,7 +858,7 @@ test('If the passed selected element is a pending promise that resolves while th
   });
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -892,7 +892,7 @@ test('When a promise resolves it doesn\'t overwrite a previous value if it isn\'
   this.selected = promise1;
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -924,7 +924,7 @@ test('When both `selected` and `options` are async, and `selected` resolves befo
   });
 
   this.render(hbs`
-    {{#power-select options=asyncOptions selected=asyncSelected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=asyncOptions selected=asyncSelected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -962,7 +962,7 @@ test('When both `selected` and `options` are async, and `selected` resolves befo
 //   });
 
 //   this.render(hbs`
-//     {{#power-select options=asyncOptions selected=asyncSelected onchange=(action (mut foo)) as |option|}}
+//     {{#power-select options=asyncOptions selected=asyncSelected onChange=(action (mut foo)) as |option|}}
 //       {{option}}
 //     {{/power-select}}
 //   `);
@@ -990,7 +990,7 @@ test('When the input inside the select gets focused the entire component gains t
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -1006,7 +1006,7 @@ test('[BUGFIX] When the component opens, if the selected option is not visible t
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected="nine" onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected="nine" onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -1021,7 +1021,7 @@ test('The destination where the content is rendered can be customized by passing
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) destination="alternative-destination" as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) destination="alternative-destination" as |option|}}
       {{option}}
     {{/power-select}}
     <div id="alternative-destination"></div>
@@ -1040,7 +1040,7 @@ test('[BUGFIX] When the component is open and it has a `search` action, if optio
   this.selected = null;
   this.search = () => [];
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) search=search as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) search=search as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -1058,7 +1058,7 @@ test('the item that is highlighted by default can be customized passing a value 
   this.numbers = numbers;
   this.defaultHighlighted = numbers[4];
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) defaultHighlighted=defaultHighlighted as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) defaultHighlighted=defaultHighlighted as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -1086,7 +1086,7 @@ test('the item that is highlighted by default can be customized passing a functi
     return 'five';
   };
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) defaultHighlighted=defaultHighlighted as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) defaultHighlighted=defaultHighlighted as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -1116,7 +1116,7 @@ test('If the options of a single select implement `isEqual`, that option is used
   this.render(hbs`
     {{#power-select
       selected=selected
-      onchange=onChance
+      onChange=onChance
       search=search as |user|}}
       {{user.name}}
     {{/power-select}}
@@ -1158,7 +1158,7 @@ test('If the select receives a `calculatePosition` option, it uses it to calcula
     }
   };
   this.render(hbs`
-    {{#power-select options=numbers renderInPlace=renderInPlace selected=selected onchange=(action (mut selected)) calculatePosition=calculatePosition as |num|}}
+    {{#power-select options=numbers renderInPlace=renderInPlace selected=selected onChange=(action (mut selected)) calculatePosition=calculatePosition as |num|}}
      {{num}}
     {{/power-select}}
   `);

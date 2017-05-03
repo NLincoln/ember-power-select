@@ -12,7 +12,7 @@ test('the select can be rendered already opened by passing `initiallyOpened=true
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers onchange=(action (mut foo)) initiallyOpened=true as |option|}}
+    {{#power-select options=numbers onChange=(action (mut foo)) initiallyOpened=true as |option|}}
       {{option}}
     {{/power-select}}
   `);

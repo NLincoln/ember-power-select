@@ -14,7 +14,7 @@
         {{#power-select options=mainSelectOptions selected=mainSelected disabled=disabled
           searchEnabled=false
           triggerComponent='main-header-select-trigger'
-          onchange=(action "changeOptions")
+          onChange=(action "changeOptions")
           dropdownClass="main-header-select-dropdown" as |opt|}}
           {{opt}}
         {{/power-select}}

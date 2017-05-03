@@ -13,7 +13,7 @@ test('Single-select: The top-level options list have `role=listbox` and nested l
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select options=groupedNumbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=groupedNumbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -30,7 +30,7 @@ test('Multiple-select: The top-level options list have `role=listbox` and nested
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select-multiple options=groupedNumbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=groupedNumbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -47,7 +47,7 @@ test('Single-select: All options have `role=option`', function(assert) {
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select options=groupedNumbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=groupedNumbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -61,7 +61,7 @@ test('Multiple-select: All options have `role=option`', function(assert) {
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select options=groupedNumbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=groupedNumbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -76,7 +76,7 @@ test('Single-select: The selected option has `aria-selected=true` and the rest `
   this.numbers = numbers;
   this.selected = 'two';
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -92,7 +92,7 @@ test('Multiple-select: The selected options have `aria-selected=true` and the re
   this.numbers = numbers;
   this.selected = ['two', 'four'];
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -108,7 +108,7 @@ test('Single-select: The highlighted option has `aria-current=true` and the rest
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -126,7 +126,7 @@ test('Multiple-select: The highlighted option has `aria-current=true` and the re
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -144,7 +144,7 @@ test('Single-select: Options with a disabled field have `aria-disabled=true`', f
 
   this.countriesWithDisabled = countriesWithDisabled;
   this.render(hbs`
-    {{#power-select options=countriesWithDisabled onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=countriesWithDisabled onChange=(action (mut foo)) as |option|}}
       {{option.code}}: {{option.name}}
     {{/power-select}}
   `);
@@ -158,7 +158,7 @@ test('Multiple-select: Options with a disabled field have `aria-disabled=true`',
 
   this.countriesWithDisabled = countriesWithDisabled;
   this.render(hbs`
-    {{#power-select-multiple options=countriesWithDisabled onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=countriesWithDisabled onChange=(action (mut foo)) as |option|}}
       {{option.code}}: {{option.name}}
     {{/power-select-multiple}}
   `);
@@ -172,7 +172,7 @@ test('Single-select: The trigger has `role=button` and `aria-owns=<id-of-dropdow
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -188,7 +188,7 @@ test('Multiple-select: The trigger has `role=button` and `aria-owns=<id-of-dropd
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -204,7 +204,7 @@ test('Single-select: The trigger attribute `aria-expanded` is true when the drop
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -220,7 +220,7 @@ test('Multiple-select: The trigger attribute `aria-expanded` is true when the dr
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -236,7 +236,7 @@ test('Single-select: The listbox has a unique id`', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -250,7 +250,7 @@ test('Multiple-select: The listbox has a unique id`', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -264,7 +264,7 @@ test('Single-select: The searchbox has type `search` and `aria-controls=<id-of-l
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -279,7 +279,7 @@ test('Multiple-select: The searchbox has type `search` and `aria-controls=<id-of
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -294,7 +294,7 @@ test('Single-select: The listbox has `aria-controls=<id-of-the-trigger>`', funct
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -308,7 +308,7 @@ test('Multiple-select: The listbox has `aria-controls=<id-of-the-trigger>`', fun
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -323,7 +323,7 @@ test('Multiple-select: The selected elements are <li>s inside an <ul>, and have 
   this.numbers = numbers;
   this.selected = ['two', 'four', 'six'];
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -345,7 +345,7 @@ test('Single-select: The trigger element correctly passes through WAI-ARIA widge
     {{#power-select
       ariaInvalid=true
       ariaLabel='ariaLabelString'
-      onchange=(action (mut foo))
+      onChange=(action (mut foo))
       options=numbers
       required=true
       selected=selected
@@ -369,7 +369,7 @@ test('Multiple-select: The trigger element correctly passes through WAI-ARIA wid
     {{#power-select-multiple
       ariaLabel='ariaLabelString'
       ariaInvalid=true
-      onchange=(action (mut foo))
+      onChange=(action (mut foo))
       options=numbers
       required=true
       selected=selected
@@ -393,7 +393,7 @@ test('Single-select: The trigger element correctly passes through WAI-ARIA relat
     {{#power-select
       ariaDescribedBy='ariaDescribedByString'
       ariaLabelledBy='ariaLabelledByString'
-      onchange=(action (mut foo))
+      onChange=(action (mut foo))
       options=numbers
       selected=selected
       as |option|
@@ -415,7 +415,7 @@ test('Multiple-select: The trigger element correctly passes through WAI-ARIA rel
     {{#power-select-multiple
       ariaDescribedBy='ariaDescribedByString'
       ariaLabelledBy='ariaLabelledByString'
-      onchange=(action (mut foo))
+      onChange=(action (mut foo))
       options=numbers
       selected=selected
       as |option|

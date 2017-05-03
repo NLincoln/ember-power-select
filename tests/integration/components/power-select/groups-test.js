@@ -13,7 +13,7 @@ test('Options that have a `groupName` and `options` are considered groups and ar
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select options=groupedNumbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=groupedNumbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -48,7 +48,7 @@ test('Options that have a `groupName` but NOT `options` are NOT considered group
     { groupName: 'Eagles', initial: 'E' }
   ];
   this.render(hbs`
-    {{#power-select options=notQuiteGroups onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=notQuiteGroups onChange=(action (mut foo)) as |option|}}
       {{option.groupName}}
     {{/power-select}}
   `);
@@ -64,7 +64,7 @@ test('When filtering, a group title is visible as long as one of it\'s elements 
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select options=groupedNumbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=groupedNumbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -84,7 +84,7 @@ test('Click on an option of a group select selects the option and closes the dro
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select options=groupedNumbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=groupedNumbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -100,7 +100,7 @@ test('Clicking on the title of a group doesn\'t performs any action nor closes t
 
   this.groupedNumbers = groupedNumbers;
   this.render(hbs`
-    {{#power-select options=groupedNumbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=groupedNumbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);

@@ -16,7 +16,7 @@ test('Multiple selects don\'t have a search box', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -30,7 +30,7 @@ test('When the select opens, the search input in the trigger gets the focus', fu
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -44,7 +44,7 @@ test('Click on an element selects it and closes the dropdown and focuses the tri
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -58,16 +58,16 @@ test('Click on an element selects it and closes the dropdown and focuses the tri
   assert.ok(find('.ember-power-select-trigger-multiple-input') === document.activeElement, 'The input of the trigger is focused again');
 });
 
-test('Selecting an element triggers the onchange action with the list of selected options', function(assert) {
+test('Selecting an element triggers the onChange action with the list of selected options', function(assert) {
   assert.expect(1);
 
   this.numbers = numbers;
   this.change = (values) => {
-    assert.deepEqual(values, ['two'], 'The onchange action is fired with the list of values');
+    assert.deepEqual(values, ['two'], 'The onChange action is fired with the list of values');
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=change as |option|}}
+    {{#power-select-multiple options=numbers onChange=change as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -76,18 +76,18 @@ test('Selecting an element triggers the onchange action with the list of selecte
   click(findAll('.ember-power-select-option')[1]);
 });
 
-test('Click an option when there is already another selects both, and triggers the onchange action with them', function(assert) {
+test('Click an option when there is already another selects both, and triggers the onChange action with them', function(assert) {
   assert.expect(5);
 
   this.numbers = numbers;
   this.selectedNumbers = ['four'];
   this.change = (values) => {
-    assert.deepEqual(values, ['four', 'two'], 'The onchange action is fired with the list of values');
+    assert.deepEqual(values, ['four', 'two'], 'The onChange action is fired with the list of values');
     this.set('selectedNumbers', values);
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selectedNumbers onchange=change as |option|}}
+    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=change as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -108,7 +108,7 @@ test('If there is many selections, all those options are styled as `selected`', 
   this.selectedNumbers = ['four', 'two'];
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selectedNumbers onchange=(action (mut selectedNumbers)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=(action (mut selectedNumbers)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -126,7 +126,7 @@ test('When the popup opens, the first items is highlighed, even if there is only
   this.selectedNumbers = ['four'];
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selectedNumbers onchange=(action (mut selectedNumbers)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=(action (mut selectedNumbers)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -138,7 +138,7 @@ test('When the popup opens, the first items is highlighed, even if there is only
   assert.equal(find('.ember-power-select-option[aria-current="true"]').textContent.trim(), 'one', 'The highlighted element is the first one');
 });
 
-test('Clicking on an option that is already selected unselects it, closes the select and triggers the `onchange` action', function(assert) {
+test('Clicking on an option that is already selected unselects it, closes the select and triggers the `onChange` action', function(assert) {
   assert.expect(3);
 
   this.numbers = numbers;
@@ -149,7 +149,7 @@ test('Clicking on an option that is already selected unselects it, closes the se
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selectedNumbers onchange=change as |option|}}
+    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=change as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -165,7 +165,7 @@ test('The default filtering works in multiple mode', function(assert) {
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -188,7 +188,7 @@ test('The filtering specifying a searchkey works in multiple model', function(as
   ];
 
   this.render(hbs`
-    {{#power-select-multiple options=people searchField="name" onchange=(action (mut foo)) as |person|}}
+    {{#power-select-multiple options=people searchField="name" onChange=(action (mut foo)) as |person|}}
       {{person.name}} {{person.surname}}
     {{/power-select-multiple}}
   `);
@@ -218,7 +218,7 @@ test('The filtering specifying a custom matcher works in multiple model', functi
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers matcher=endsWithMatcher onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers matcher=endsWithMatcher onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -243,7 +243,7 @@ test('The search using a custom action works int multiple mode', function(assert
   };
 
   this.render(hbs`
-    {{#power-select-multiple search=searchFn onchange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple search=searchFn onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -262,7 +262,7 @@ test('Pressing ENTER when the select is closed opens and nothing is written on t
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -280,7 +280,7 @@ test('Pressing ENTER on a multiple select with `searchEnabled=false` when it is 
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple searchEnabled=false options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple searchEnabled=false options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -301,7 +301,7 @@ test('Pressing ENTER over a highlighted element selects it', function(assert) {
     this.set('foo', selected);
   };
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=change as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=change as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -317,7 +317,7 @@ test('Pressing ENTER over a highlighted element on a multiple select with `searc
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple searchEnabled=false options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple searchEnabled=false options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -339,7 +339,7 @@ test('Pressing ENTER over a highlighted element on a select with `searchEnabled=
     this.set('foo', selected);
   };
   this.render(hbs`
-    {{#power-select-multiple searchEnabled=false options=numbers selected=foo onchange=change as |option|}}
+    {{#power-select-multiple searchEnabled=false options=numbers selected=foo onChange=change as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -363,7 +363,7 @@ test('Pressing ENTER over a highlighted element what is already selected closes 
     this.set('selected', val);
   };
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=didChange as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=didChange as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -386,7 +386,7 @@ test('Pressing BACKSPACE on the search input when there is text on it does nothi
     this.set('selected', val);
   };
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=didChange as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=didChange as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -408,7 +408,7 @@ test('Pressing BACKSPACE on the search input when it\'s empty removes the last s
     assert.ok(dropdown.actions.close, 'The dropdown API is received as second argument');
   };
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=didChange selected=selected as |option|}}
+    {{#power-select-multiple options=numbers onChange=didChange selected=selected as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -435,7 +435,7 @@ test('Pressing BACKSPACE on the search input when it\'s empty removes the last s
     assert.ok(dropdown.actions.close, 'The dropdown API is received as second argument');
   };
   this.render(hbs`
-    {{#power-select-multiple options=contries selected=country onchange=didChange searchField="name" as |c|}}
+    {{#power-select-multiple options=contries selected=country onChange=didChange searchField="name" as |c|}}
       {{c.name}}
     {{/power-select-multiple}}
   `);
@@ -453,7 +453,7 @@ test('Pressing BACKSPACE on the search input when it\'s empty removes the last s
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -474,7 +474,7 @@ test('If the multiple component is focused, pressing KEYDOWN opens it', function
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -491,7 +491,7 @@ test('If the multiple component is focused, pressing KEYUP opens it', function(a
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -508,7 +508,7 @@ test('The placeholder is only visible when no options are selected', function(as
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) placeholder="Select stuff here" as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) placeholder="Select stuff here" as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -524,7 +524,7 @@ test('The placeholder is visible when no options are selected and search is disa
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple searchEnabled=false options=numbers selected=foo onchange=(action (mut foo)) placeholder="Select stuff here" as |option|}}
+    {{#power-select-multiple searchEnabled=false options=numbers selected=foo onChange=(action (mut foo)) placeholder="Select stuff here" as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -540,7 +540,7 @@ test('If the placeholder is null the placeholders shouldn\'t be "null" (issue #9
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -557,7 +557,7 @@ test('Selecting and removing should result in desired behavior', function(assert
   assert.expect(3);
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -573,7 +573,7 @@ test('Selecting and removing can also be done with touch events', function(asser
   assert.expect(3);
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -590,7 +590,7 @@ test('Typing in the input opens the component and filters the options', function
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -611,7 +611,7 @@ test('Typing in the input opens the component and filters the options also with 
   };
 
   this.render(hbs`
-    {{#power-select-multiple selected=foo onchange=(action (mut foo)) search=(action search) as |option|}}
+    {{#power-select-multiple selected=foo onChange=(action (mut foo)) search=(action search) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -629,7 +629,7 @@ test('The publicAPI is yielded as second argument in multiple selects', function
   assert.expect(2);
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option select|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option select|}}
       {{select.lastSearchedText}}:{{option}}
     {{/power-select-multiple}}
   `);
@@ -647,7 +647,7 @@ test('The search input is cleared when the component is closed', function(assert
   assert.expect(3);
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
     <div id="other-thing">Other div</div>
@@ -661,14 +661,14 @@ test('The search input is cleared when the component is closed', function(assert
   assert.equal(find('.ember-power-select-trigger-multiple-input').value, '');
 });
 
-test('When hitting ENTER after a search with no results, the component is closed but the onchange function is not invoked', function(assert) {
+test('When hitting ENTER after a search with no results, the component is closed but the onChange function is not invoked', function(assert) {
   assert.expect(3);
   this.numbers = numbers;
   this.handleChange = () => {
     assert.ok(false, 'The handle change should not be called');
   };
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action handleChange) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action handleChange) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -685,7 +685,7 @@ test('The trigger of multiple selects have a special class to distinguish them f
   assert.expect(2);
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers triggerClass="foobar-trigger" selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers triggerClass="foobar-trigger" selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -699,7 +699,7 @@ test('The component works when the array of selected elements is mutated in plac
   this.numbers = numbers;
   this.selected = Ember.A();
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onchange=(action (mut selected)) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut selected)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -714,7 +714,7 @@ test('When the input inside the multiple select gets focused, the trigger and th
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -730,7 +730,7 @@ test('When the power select multiple uses the default component and the search i
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -743,7 +743,7 @@ test('When the power select multiple uses the default component and the search i
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) searchEnabled=false as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) searchEnabled=false as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -756,7 +756,7 @@ test('When the power select multiple uses the default component and the search i
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) tabindex=3 as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) tabindex=3 as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -771,7 +771,7 @@ test('Multiple selects honor the `defaultHighlighted` option', function(assert) 
   this.numbers = numbers;
   this.defaultHighlighted = numbers[3];
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) defaultHighlighted=defaultHighlighted as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) defaultHighlighted=defaultHighlighted as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -794,7 +794,7 @@ test('If the options of a multiple select implement `isEqual`, that option is us
   this.render(hbs`
     {{#power-select-multiple
       selected=selected
-      onchange=(action (mut selected))
+      onChange=(action (mut selected))
       search=search as |user|}}
       {{user.name}}
     {{/power-select-multiple}}
@@ -823,7 +823,7 @@ test('When there is an option which is disabled the css class "ember-power-selec
   assert.notEqual(disabledNumCountries, 0, 'There is at least one disabled option');
   this.foo = countriesWithDisabled;
   this.render(hbs`
-    {{#power-select-multiple options=countriesWithDisabled selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select-multiple options=countriesWithDisabled selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);

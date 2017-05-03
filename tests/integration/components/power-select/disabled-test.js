@@ -14,7 +14,7 @@ test('A disabled dropdown doesn\'t responds to mouse/keyboard events', function(
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers disabled=true onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers disabled=true onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -32,7 +32,7 @@ test('A disabled dropdown is not focusable, and ignores the passed tabindex ', f
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select options=numbers tabindex="123" disabled=true onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers tabindex="123" disabled=true onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -44,7 +44,7 @@ test('Disabled options are not highlighted when hovered with the mouse', functio
 
   this.countriesWithDisabled = countriesWithDisabled;
   this.render(hbs`
-    {{#power-select options=countriesWithDisabled onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=countriesWithDisabled onChange=(action (mut foo)) as |option|}}
       {{option.code}}: {{option.name}}
     {{/power-select}}
   `);
@@ -59,7 +59,7 @@ test('Disabled options are skipped when highlighting items with the keyboard', f
 
   this.countriesWithDisabled = countriesWithDisabled;
   this.render(hbs`
-    {{#power-select options=countriesWithDisabled onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=countriesWithDisabled onChange=(action (mut foo)) as |option|}}
       {{option.code}}: {{option.name}}
     {{/power-select}}
   `);
@@ -75,7 +75,7 @@ test('When passed `disabled=true`, the input inside the trigger is also disabled
 
   this.numbers = numbers;
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onchange=(action (mut foo)) disabled=true as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) disabled=true as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -90,7 +90,7 @@ test('When passed `disabled=true`, the options cannot be removed', function(asse
   this.selectedNumbers = [numbers[2], numbers[4]];
 
   this.render(hbs`
-    {{#power-select-multiple selected=selectedNumbers onchange=(action (mut foo)) options=numbers disabled=true as |option|}}
+    {{#power-select-multiple selected=selectedNumbers onChange=(action (mut foo)) options=numbers disabled=true as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -106,7 +106,7 @@ test('Multiple select: When passed `disabled=prop`, enabling and disabling that 
   this.set('shouldBeDisabled', true);
 
   this.render(hbs`
-    {{#power-select-multiple selected=selectedNumbers onchange=(action (mut foo)) options=numbers disabled=shouldBeDisabled as |option|}}
+    {{#power-select-multiple selected=selectedNumbers onChange=(action (mut foo)) options=numbers disabled=shouldBeDisabled as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -123,7 +123,7 @@ test('BUGFIX: When after a search the only result is a disabled element, it isn\
   this.countriesWithDisabled = countriesWithDisabled;
 
   this.render(hbs`
-   {{#power-select options=countriesWithDisabled searchField='name' selected=foo onchange=(action (mut foo)) as |country|}}
+   {{#power-select options=countriesWithDisabled searchField='name' selected=foo onChange=(action (mut foo)) as |country|}}
      {{country.name}}
    {{/power-select}}
   `);
@@ -141,7 +141,7 @@ test('BUGFIX: When after a search there is two results and the first one is a di
   this.countriesWithDisabled = countriesWithDisabled;
 
   this.render(hbs`
-   {{#power-select options=countriesWithDisabled searchField='name' selected=foo onchange=(action (mut foo)) as |country|}}
+   {{#power-select options=countriesWithDisabled searchField='name' selected=foo onChange=(action (mut foo)) as |country|}}
      {{country.name}}
    {{/power-select}}
   `);
@@ -159,7 +159,7 @@ test('BUGFIX: When searching by pressing keys on a focused & closed select, disa
   this.countriesWithDisabled = countriesWithDisabled;
 
   this.render(hbs`
-   {{#power-select options=countriesWithDisabled searchField='name' selected=foo onchange=(action (mut foo)) as |country|}}
+   {{#power-select options=countriesWithDisabled searchField='name' selected=foo onChange=(action (mut foo)) as |country|}}
      {{country.name}}
    {{/power-select}}
   `);
@@ -192,7 +192,7 @@ test('The title of a group can be marked as disabled, and it is still disabled a
 
   this.options = options;
   this.render(hbs`
-    {{#power-select options=options onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=options onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -224,7 +224,7 @@ test('If a group is disabled, any options inside cannot be interacted with mouse
 
   this.options = options;
   this.render(hbs`
-    {{#power-select options=options selected=foo onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=options selected=foo onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -245,7 +245,7 @@ test('If the value of `disabled` changes, the `disabled` property in the publicA
   this.isDisabled = false;
   this.foo = numbers[0];
   this.render(hbs`
-    {{#power-select options=numbers selected=foo disabled=isDisabled onchange=(action (mut foo)) as |option select|}}
+    {{#power-select options=numbers selected=foo disabled=isDisabled onChange=(action (mut foo)) as |option select|}}
       {{if select.disabled 'disabled!' 'enabled!'}}
     {{/power-select}}
   `);
@@ -261,7 +261,7 @@ test('If a select gets disabled while it\'s open, it closes automatically', func
   this.numbers = numbers;
   this.isDisabled = false;
   this.render(hbs`
-    {{#power-select options=numbers disabled=isDisabled onchange=(action (mut foo)) as |option|}}
+    {{#power-select options=numbers disabled=isDisabled onChange=(action (mut foo)) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -277,7 +277,7 @@ test('BUGFIX: A component can be disabled on selection', function(assert) {
   this.numbers = numbers;
 
   this.render(hbs`
-   {{#power-select options=numbers selected=foo onchange=(action (mut foo)) disabled=foo  as |opt|}}
+   {{#power-select options=numbers selected=foo onChange=(action (mut foo)) disabled=foo  as |opt|}}
      {{opt}}
    {{/power-select}}
   `);

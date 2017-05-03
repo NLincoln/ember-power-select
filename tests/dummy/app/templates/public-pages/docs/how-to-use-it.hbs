@@ -4,7 +4,7 @@
   The basic component usage is very simple. The only mandatory arguments you have to
   pass to it are <code>options</code>(<b>*</b>) which has to be a <em>collection</em> of any kind, including
   the result of ember-data operations like <code>.find</code> or <code>.query</code>, and the
-  <code>onchange</code> action.
+  <code>onChange</code> action.
   The component will yield each individual item in the collection to the block to generate the list.
 </p>
 
@@ -59,17 +59,17 @@
   <li>
     <code>selected</code> (and all other options options actually) is read only. This means that selecting
     an element in the component won't do anything. That is a design decision and the reason why the
-    <code>onchange</code> action is mandatory. This is aligned with Ember's Data Down Actions Up (DDAU) philosophy.
+    <code>onChange</code> action is mandatory. This is aligned with Ember's Data Down Actions Up (DDAU) philosophy.
   </li>
 </ul>
 
 <p>
   This is the very basic usage of this component, but so far is pretty useless. Since there are no
-  two way bindings and the <code>onchange</code> action is empty <strong>nothing happens when you select something.</strong>
+  two way bindings and the <code>onChange</code> action is empty <strong>nothing happens when you select something.</strong>
 </p>
 
 <p>
-  Let's see how to take advantage of the <code>onchange</code> property.
+  Let's see how to take advantage of the <code>onChange</code> property.
 </p>
 
 <div class="doc-page-nav">
