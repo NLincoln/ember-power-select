@@ -107,6 +107,7 @@ export default Component.extend({
       scrollTo: (...args) => scheduleOnce('afterRender', this, this.send, 'scrollTo', ...args)
     };
     assert('{{power-select}} requires an `onChange` function', this.get('onChange') && typeof this.get('onChange') === 'function');
+    Ember.deprecate('{{power-select}} has deprecated the `onchange` action. Please use `onChange` instead', this.get('onchange') && typeof this.get('onchange') === 'function');
   },
 
   willDestroy() {
