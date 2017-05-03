@@ -107,7 +107,16 @@ export default Component.extend({
       scrollTo: (...args) => scheduleOnce('afterRender', this, this.send, 'scrollTo', ...args)
     };
     assert('{{power-select}} requires an `onChange` function', this.get('onChange') && typeof this.get('onChange') === 'function');
-    Ember.deprecate('{{power-select}} has deprecated the `onchange` action. Please use `onChange` instead', this.get('onchange') && typeof this.get('onchange') === 'function');
+    let deprecateAction = (oldName, newName) => {
+      Ember.deprecate(`{{power-select}} has deprecated the \`${oldName}\` action. Please use \`${newName}\` instead`, this.get(oldName) && typeof this.get(oldName) === 'function');
+    };
+    deprecateAction('onchange', 'onChange');
+    deprecateAction('onkeydown', 'onKeyDown');
+    deprecateAction('oninput', 'onInput');
+    deprecateAction('onfocus', 'onFocus');
+    deprecateAction('onblur', 'onBlur');
+    deprecateAction('onopen', 'onOpen');
+    deprecateAction('onclose', 'onClose');
   },
 
   willDestroy() {
@@ -210,7 +219,7 @@ export default Component.extend({
     },
 
     onOpen(_, e) {
-      let action = this.get('onopen');
+      let action = this.get('onOpen') || this.get('onopen');
       if (action && action(this.get('publicAPI'), e) === false) {
         return false;
       }
@@ -224,7 +233,7 @@ export default Component.extend({
     },
 
     onClose(_, e) {
-      let action = this.get('onclose');
+      let action = this.get('onClose') || this.get('onclose');
       if (action && action(this.get('publicAPI'), e) === false) {
         return false;
       }
@@ -236,7 +245,7 @@ export default Component.extend({
 
     onInput(e) {
       let term = e.target.value;
-      let action = this.get('oninput');
+      let action = this.get('onInput') || this.get('oninput');
       let publicAPI = this.get('publicAPI');
       let correctedTerm;
       if (action) {
@@ -291,7 +300,7 @@ export default Component.extend({
 
     // keydowns handled by the trigger provided by ember-basic-dropdown
     onTriggerKeydown(_, e) {
-      let onkeydown = this.get('onkeydown');
+      let onkeydown = this.get('onKeyDown') || this.get('onkeydown');
       if (onkeydown && onkeydown(this.get('publicAPI'), e) === false) {
         return false;
       }
@@ -306,7 +315,7 @@ export default Component.extend({
 
     // keydowns handled by inputs inside the component
     onKeydown(e) {
-      let onkeydown = this.get('onkeydown');
+      let onkeydown = this.get('onKeyDown') || this.get('onkeydown');
       if (onkeydown && onkeydown(this.get('publicAPI'), e) === false) {
         return false;
       }
@@ -338,7 +347,7 @@ export default Component.extend({
 
     onTriggerFocus(_, event) {
       this.send('activate');
-      let action = this.get('onfocus');
+      let action = this.get('onFocus') || this.get('onfocus');
       if (action) {
         action(this.get('publicAPI'), event);
       }
@@ -346,7 +355,7 @@ export default Component.extend({
 
     onFocus(event) {
       this.send('activate');
-      let action = this.get('onfocus');
+      let action = this.get('onFocus') || this.get('onfocus');
       if (action) {
         action(this.get('publicAPI'), event);
       }
@@ -354,7 +363,7 @@ export default Component.extend({
 
     onTriggerBlur(_, event) {
       this.send('deactivate');
-      let action = this.get('onblur');
+      let action = this.get('onBlur') || this.get('onblur');
       if (action) {
         action(this.get('publicAPI'), event);
       }
@@ -362,7 +371,7 @@ export default Component.extend({
 
     onBlur(event) {
       this.send('deactivate');
-      let action = this.get('onblur');
+      let action = this.get('onBlur') || this.get('onblur');
       if (action) {
         action(this.get('publicAPI'), event);
       }
