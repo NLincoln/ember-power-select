@@ -302,7 +302,7 @@ test('Pressing ESC while the component is opened closes it and focuses the trigg
   assert.ok(find('.ember-power-select-trigger') === document.activeElement, 'The select is focused');
 });
 
-test('In single-mode, when the user presses a key being the search input focused the passes `onkeydown` action is invoked with the public API and the event', function(assert) {
+test('In single-mode, when the user presses a key being the search input focused the passes `onKeyDown` action is invoked with the public API and the event', function(assert) {
   assert.expect(9);
 
   this.numbers = numbers;
@@ -318,7 +318,7 @@ test('In single-mode, when the user presses a key being the search input focused
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onKeyDown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -345,7 +345,7 @@ test('In single-mode, when the user presses SPACE on the searchbox, the highligh
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onKeyDown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -373,7 +373,7 @@ test('In multiple-mode, when the user presses SPACE on the searchbox, the highli
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select-multiple options=numbers selected=selected onChange=(action (mut foo)) onKeyDown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -385,7 +385,7 @@ test('In multiple-mode, when the user presses SPACE on the searchbox, the highli
   assert.equal(find('.ember-power-select-trigger').textContent.trim(), '', 'Nothing was selected');
 });
 
-test('in single-mode if the users returns false in the `onkeydown` action it prevents the component to do the usual thing', function(assert) {
+test('in single-mode if the users returns false in the `onKeyDown` action it prevents the component to do the usual thing', function(assert) {
   assert.expect(2);
 
   this.numbers = numbers;
@@ -395,7 +395,7 @@ test('in single-mode if the users returns false in the `onkeydown` action it pre
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select options=numbers selected=selected onChange=(action (mut foo)) onKeyDown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -406,7 +406,7 @@ test('in single-mode if the users returns false in the `onkeydown` action it pre
   assert.ok(find('.ember-power-select-dropdown'), 'The select is still opened');
 });
 
-test('In multiple-mode, when the user presses a key being the search input focused the passes `onkeydown` action is invoked with the public API and the event', function(assert) {
+test('In multiple-mode, when the user presses a key being the search input focused the passes `onKeyDown` action is invoked with the public API and the event', function(assert) {
   assert.expect(9);
 
   this.numbers = numbers;
@@ -422,7 +422,7 @@ test('In multiple-mode, when the user presses a key being the search input focus
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=(action (mut foo)) onKeyDown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);
@@ -433,7 +433,7 @@ test('In multiple-mode, when the user presses a key being the search input focus
   assert.notOk(find('.ember-power-select-dropdown'), 'The select is closed');
 });
 
-test('in multiple-mode if the users returns false in the `onkeydown` action it prevents the component to do the usual thing', function(assert) {
+test('in multiple-mode if the users returns false in the `onKeyDown` action it prevents the component to do the usual thing', function(assert) {
   assert.expect(2);
 
   this.numbers = numbers;
@@ -441,7 +441,7 @@ test('in multiple-mode if the users returns false in the `onkeydown` action it p
   this.handleKeydown = () => false;
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=(action (mut foo)) onkeydown=(action handleKeydown) as |option|}}
+    {{#power-select-multiple options=numbers selected=selectedNumbers onChange=(action (mut foo)) onKeyDown=(action handleKeydown) as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);

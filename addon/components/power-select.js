@@ -111,7 +111,7 @@ export default Component.extend({
       Ember.deprecate(`{{power-select}} has deprecated the \`${oldName}\` action. Please use \`${newName}\` instead`, this.get(oldName) && typeof this.get(oldName) === 'function');
     };
     deprecateAction('onchange', 'onChange');
-    deprecateAction('onkeydown', 'onKeyDown');
+    deprecateAction('onKeyDown', 'onKeyDown');
     deprecateAction('oninput', 'onInput');
     deprecateAction('onfocus', 'onFocus');
     deprecateAction('onblur', 'onBlur');
@@ -300,8 +300,8 @@ export default Component.extend({
 
     // keydowns handled by the trigger provided by ember-basic-dropdown
     onTriggerKeydown(_, e) {
-      let onkeydown = this.get('onKeyDown') || this.get('onkeydown');
-      if (onkeydown && onkeydown(this.get('publicAPI'), e) === false) {
+      let onKeyDown = this.get('onKeyDown') || this.get('onKeyDown');
+      if (onKeyDown && onKeyDown(this.get('publicAPI'), e) === false) {
         return false;
       }
       if (e.keyCode >= 48 && e.keyCode <= 90) { // Keys 0-9, a-z or SPACE
@@ -315,8 +315,8 @@ export default Component.extend({
 
     // keydowns handled by inputs inside the component
     onKeydown(e) {
-      let onkeydown = this.get('onKeyDown') || this.get('onkeydown');
-      if (onkeydown && onkeydown(this.get('publicAPI'), e) === false) {
+      let onKeyDown = this.get('onKeyDown') || this.get('onKeyDown');
+      if (onKeyDown && onKeyDown(this.get('publicAPI'), e) === false) {
         return false;
       }
       return this._routeKeydown(e);

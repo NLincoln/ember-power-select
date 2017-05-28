@@ -111,7 +111,7 @@ test('The onChange of multiple selects action receives the selection and the pub
   click('.ember-power-select-option');
 });
 
-test('The onkeydown of single selects action receives the public API and the keydown event when fired on the searchbox', function(assert) {
+test('The onKeyDown of single selects action receives the public API and the keydown event when fired on the searchbox', function(assert) {
   assert.expect(44);
 
   this.numbers = numbers;
@@ -121,7 +121,7 @@ test('The onkeydown of single selects action receives the public API and the key
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onkeydown=onKeyDown onChange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo onKeyDown=onKeyDown onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -132,7 +132,7 @@ test('The onkeydown of single selects action receives the public API and the key
   keyEvent(input, 'keydown', 65);
 });
 
-test('The onkeydown can be used to easily allow to select on tab', function(assert) {
+test('The onKeyDown can be used to easily allow to select on tab', function(assert) {
   assert.expect(2);
 
   this.numbers = numbers;
@@ -144,7 +144,7 @@ test('The onkeydown can be used to easily allow to select on tab', function(asse
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onkeydown=onKeyDown onChange=(action (mut foo)) as |number|}}
+    {{#power-select options=numbers selected=foo onKeyDown=onKeyDown onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select}}
   `);
@@ -158,7 +158,7 @@ test('The onkeydown can be used to easily allow to select on tab', function(asse
   assert.notOk(find('.ember-power-select-dropdown'), 'Dropdown is opened');
 });
 
-test('The onkeydown of multiple selects action receives the public API and the keydown event', function(assert) {
+test('The onKeyDown of multiple selects action receives the public API and the keydown event', function(assert) {
   assert.expect(44);
 
   this.numbers = numbers;
@@ -168,7 +168,7 @@ test('The onkeydown of multiple selects action receives the public API and the k
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onkeydown=onKeyDown onChange=(action (mut foo)) as |number|}}
+    {{#power-select-multiple options=numbers selected=foo onKeyDown=onKeyDown onChange=(action (mut foo)) as |number|}}
       {{number}}
     {{/power-select-multiple}}
   `);
@@ -179,7 +179,7 @@ test('The onkeydown of multiple selects action receives the public API and the k
   keyEvent(input, 'keydown', 65);
 });
 
-test('returning false from the `onkeydown` action prevents the default behaviour in single selects', function(assert) {
+test('returning false from the `onKeyDown` action prevents the default behaviour in single selects', function(assert) {
   assert.expect(48);
 
   this.numbers = numbers;
@@ -191,7 +191,7 @@ test('returning false from the `onkeydown` action prevents the default behaviour
   };
 
   this.render(hbs`
-    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) onkeydown=handleKeyDown as |option|}}
+    {{#power-select options=numbers selected=foo onChange=(action (mut foo)) onKeyDown=handleKeyDown as |option|}}
       {{option}}
     {{/power-select}}
   `);
@@ -202,7 +202,7 @@ test('returning false from the `onkeydown` action prevents the default behaviour
   assert.notEqual(find('.ember-power-select-trigger').textContent.trim(), 'two', 'nothing was selected');
 });
 
-test('returning false from the `onkeydown` action prevents the default behaviour in multiple selects', function(assert) {
+test('returning false from the `onKeyDown` action prevents the default behaviour in multiple selects', function(assert) {
   assert.expect(24);
 
   this.numbers = numbers;
@@ -214,7 +214,7 @@ test('returning false from the `onkeydown` action prevents the default behaviour
   };
 
   this.render(hbs`
-    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) onkeydown=handleKeyDown as |option|}}
+    {{#power-select-multiple options=numbers selected=foo onChange=(action (mut foo)) onKeyDown=handleKeyDown as |option|}}
       {{option}}
     {{/power-select-multiple}}
   `);

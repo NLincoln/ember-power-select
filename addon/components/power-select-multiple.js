@@ -60,7 +60,7 @@ export default Component.extend({
     },
 
     handleKeydown(select, e) {
-      let action = this.get('onkeydown');
+      let action = this.get('onKeyDown');
       if (action && action(select, e) === false) {
         e.stopPropagation();
         return false;
